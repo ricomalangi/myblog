@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::orderBy('category_id', 'DESC')->get();
         return view('admin.category.index', ['category' => $category]);
     }
 
@@ -81,7 +81,10 @@ class CategoryController extends Controller
         $this->validate($request, [
             'nama' => 'required'
         ]);
-        $category->update($request->only('nama'));
+        $category->update([
+            'nama' => $request->nama,
+            'slug' => Str::slug($request->nama, '-')
+        ]);
         return redirect()->route('category.index');
     }
 
