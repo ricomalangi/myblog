@@ -37,7 +37,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama' => 'required|unique'
+            'nama' => 'required'
         ]);
         Category::create([
             'nama' => $request->nama,
@@ -66,7 +66,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', ['category' => $category]);
     }
 
     /**
@@ -78,7 +78,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required'
+        ]);
+        $category->update($request->only('nama'));
+        return redirect()->route('category.index');
     }
 
     /**

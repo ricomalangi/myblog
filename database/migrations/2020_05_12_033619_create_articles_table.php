@@ -23,6 +23,14 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->enum('status', ['publish', 'draft']);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
+            $table->foreign('category_id')->references('category_id')->on('categories')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');    
         });
     }
 

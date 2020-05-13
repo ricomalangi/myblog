@@ -9,4 +9,9 @@ class Category extends Model
     protected $table = 'categories';
     protected $primaryKey = 'category_id';
     protected $guarded = [];
+
+    public function hasCategoryArticles()
+    {
+        return $this->hasMany('App\Article');
+    }
 }

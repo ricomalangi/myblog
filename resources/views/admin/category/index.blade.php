@@ -8,6 +8,7 @@
             <th scope="col">No</th>
             <th scope="col">Categoty Name</th>
             <th scope="col">Slug</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -19,6 +20,9 @@
                 <th scope="row">{{$no++}}</th>
                 <td>{{$c->nama}}</td>
                 <td>{{$c->slug}}</td>
+                <td>
+                    <a href="{{route('category.edit', $c->category_id)}}">Edit</a>
+                </td>
             </tr>
             @endforeach
            
