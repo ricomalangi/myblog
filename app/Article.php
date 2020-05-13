@@ -9,12 +9,12 @@ class Article extends Model
     protected $table = 'articles';
     protected $guarded = [];
 
-    public function userArticles()
+    public function get_user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function categories()
+    public function get_category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo(Category::class, 'category_id', 'category_id');
     }
 }

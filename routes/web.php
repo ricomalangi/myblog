@@ -19,11 +19,13 @@ Route::get('/', function () {
 
 Route::get('/admin', 'AdminController@index')->name('dashboard');
 Route::resource('admin/category', 'CategoryController'); 
+Route::resource('admin/article', 'ArticleController'); 
 
 Auth::routes();
+
 Route::match(["GET", "POST"], "/register", function(){
     return redirect("/login");
 })->name("register");
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
