@@ -51,7 +51,7 @@
             <textarea name="konten" id="content" class="form-control"></textarea>
         </div>
     </div>    
-    <div class="row mt-3">
+    <div class="row mt-3 pb-3">
         <div class="col-md">
             <a href="{{route('article.index')}}" class="btn btn-secondary btn-icon-split">
                 <span class="icon">
@@ -67,16 +67,15 @@
 @push('select2css')
     <link href="{{asset('assets/plugins/select2/css/select2.css')}}" rel="stylesheet" >
 @endpush
-@push('select2js')
-    <script src="{{asset('assets/plugins/select2/js/select2.js')}}"></script>
-    <script>
-        $(document).ready(function(){
-            $('.select2').select2();
-        });
-    </script>
-@endpush
-@push('ckeditor')
-    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+@push('scripts')
+<script src="{{asset('assets/plugins/select2/js/select2.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        $('.select2').select2();
+    });
+</script>
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('content');
     </script>

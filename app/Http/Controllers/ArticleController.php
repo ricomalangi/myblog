@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 class ArticleController extends Controller
 {
     /**
@@ -22,7 +23,10 @@ class ArticleController extends Controller
     {
         $article = Article::with(['get_user', 'get_category'])->orderBy('id', 'DESC')->get();
         //dd($article);
-        return view('admin.article.index', ['article' => $article]);
+        return view('admin.article.index', [
+            'article' => $article,
+            'title' => 'Article'
+        ]);
     }
 
     /**
@@ -33,7 +37,10 @@ class ArticleController extends Controller
     public function create()
     {
         $category = Category::orderBy('nama', 'ASC')->get();
-        return view('admin.article.create', ['category' => $category]);
+        return view('admin.article.create', [
+            'category' => $category,
+            'title' => 'Create Article'    
+        ]);
     }
 
     /**
@@ -88,7 +95,8 @@ class ArticleController extends Controller
         $category = Category::get(['category_id', 'nama']);
         return view('admin.article.edit', [
             'article' => $article,
-            'category' => $category
+            'category' => $category,
+            'title' => 'Edit Article' 
         ]);
     }
 
@@ -132,6 +140,11 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $image_path = $article->sampul;
+        if(public_path($image_path)){
+            Storage::delete($article->sampul);
+        }
+        $article->delete();
+        return redirect()->route('article.index');
     }
 }

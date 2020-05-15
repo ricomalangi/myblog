@@ -19,7 +19,10 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::orderBy('category_id', 'DESC')->get();
-        return view('admin.category.index', ['category' => $category]);
+        return view('admin.category.index', [
+            'category' => $category,
+            'title' => 'Category' 
+        ]);
     }
 
     /**
@@ -29,7 +32,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.category.create', [
+            'title' => 'Create Category' 
+        ]);
     }
 
     /**
@@ -70,7 +75,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit', ['category' => $category]);
+        return view('admin.category.edit', [
+            'category' => $category,
+            'title' => 'Edit Category' 
+            ]);
     }
 
     /**
@@ -100,6 +108,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back();
     }
 }

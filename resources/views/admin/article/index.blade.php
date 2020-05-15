@@ -32,12 +32,47 @@
                     alt="" width="150" height="150"></td>
                 <td>
                     <a class="btn btn-warning btn-md" href="{{route('article.edit', $a->id)}}"><span class="far fa-edit"></span></a>
-                    <a class="btn btn-danger btn-md" href="#"><span class="far fa-trash-alt"></a>
+                    <a class="btn btn-danger btn-md" id="delete" href="{{route('article.destroy', $a->id)}}"><span class="far fa-trash-alt"></a>
                 </td>
             </tr>
             @endforeach
-           
+            <form action="" method="POST" style="display: none" id="delete-article">
+                @csrf @method('DELETE')
+            </form>
         </tbody>
     </table>
 </div>
 @endsection
+@push('sweetalert2css')
+<link rel="stylesheet" href="{{asset('assets/plugins/sweetalert2/sweetalert2.css')}}">
+@endpush
+@push('scripts')
+<script src="{{asset('assets/plugins/sweetalert2/sweetalert2.js')}}"></script>
+<script>
+    $(document).ready(function(){
+       $('a#delete').on('click', function(e){
+            e.preventDefault();
+            let href = $(this).attr('href');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.value) {
+                    document.getElementById('delete-article').action = href;
+                    document.getElementById('delete-article').submit();
+                    Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                    )
+                }
+            })
+       })
+    })
+</script>
+@endpush
