@@ -6,14 +6,14 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{old('title')}}" placeholder="Title">
+                <input type="text" name="judul" class="form-control @error('title') is-invalid @enderror" id="title" value="{{old('title')}}" placeholder="Title">
                 @error('title')
                 <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="category_name">Category</label>
-                <select name="category" id="category_name" class="form-control select2 @error('category') is-invalid @enderror">
+                <select name="category_id" id="category_name" class="form-control select2 @error('category') is-invalid @enderror">
                     <option selected disabled>Choose category</option>
                     @foreach ($category as $c)
                     <option value="{{$c->category_id}}">{{$c->nama}}</option>
@@ -40,14 +40,8 @@
                 <label for="cover">Cover</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="cover" name="sampul">
-                    <label class="custom-file-label" for="cover">Choose file</label>
-                    <small class="form-text text-muted">
-                        jika belum punya sampul biarkan kosong
-                    </small>
+                    <label class="custom-file-label" for="cover">jika belum punya sampul biarkan kosong</label>
                 </div>
-                @error('category')
-                <div class="invalid-feedback">{{$message}}</div>
-                @enderror
             </div>
         </div>
     </div>

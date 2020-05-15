@@ -5,7 +5,8 @@ use App\User;
 use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
     /**
@@ -13,6 +14,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $article = Article::with(['get_user', 'get_category'])->get();
@@ -39,7 +44,27 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $this->validate($request, [
+            'judul' => 'required',
+            'konten' => 'required',
+            'category_id' => 'required|numeric'
+        ]);
+        $sampul = 'https://via.placeholder.com/150';
+        if($request->hasFile('sampul')){
+            $sampul = $request->file('sampul')->store('assets/image', 'public');
+        }
+        $upload = Article::create([
+            'judul' => $request->judul,
+            'slug' => Str::slug($request->judul, '-'),
+            'konten' => $request->konten,
+            'sampul' => $sampul,
+            'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
+            'status' => $request->status
+        ]);
+        // dd($upload);
+        return redirect()->route('article.index');
     }
 
     /**
