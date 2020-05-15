@@ -5,5 +5,4 @@
 <!-- AdminLTE App -->
 <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
 <script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.js')}}"></script>
-@stack('select2js')
-@stack('ckeditor')
+@stack('scripts')

@@ -23,9 +23,15 @@
                 <td>{{$a->judul}}</td>
                 <td>{{$a->get_user->name}}</td>
                 <td>{{$a->get_category->nama}}</td>
-                <td><img src="{{asset('storage/'. $a->sampul)}}" alt="" width="150"></td>
+                <td><img
+                   @if (substr($a->sampul,0,5) == "https")
+                    src="{{$a->sampul}}"
+                   @else
+                    src="{{asset('storage/'. $a->sampul)}}"   
+                   @endif
+                    alt="" width="150" height="150"></td>
                 <td>
-                    <a class="btn btn-warning btn-md" href="#"><span class="far fa-edit"></span></a>
+                    <a class="btn btn-warning btn-md" href="{{route('article.edit', $a->id)}}"><span class="far fa-edit"></span></a>
                     <a class="btn btn-danger btn-md" href="#"><span class="far fa-trash-alt"></a>
                 </td>
             </tr>

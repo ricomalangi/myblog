@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
 use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
     /**
@@ -20,7 +20,7 @@ class ArticleController extends Controller
     }
     public function index()
     {
-        $article = Article::with(['get_user', 'get_category'])->get();
+        $article = Article::with(['get_user', 'get_category'])->orderBy('id', 'DESC')->get();
         //dd($article);
         return view('admin.article.index', ['article' => $article]);
     }
@@ -44,17 +44,17 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $this->validate($request, [
             'judul' => 'required',
             'konten' => 'required',
-            'category_id' => 'required|numeric'
+            'category_id' => 'required|numeric',
+            'sampul' => 'file|image'
         ]);
         $sampul = 'https://via.placeholder.com/150';
         if($request->hasFile('sampul')){
-            $sampul = $request->file('sampul')->store('assets/image', 'public');
+            $sampul = $request->file('sampul')->store('images');
         }
-        $upload = Article::create([
+        Article::create([
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul, '-'),
             'konten' => $request->konten,
@@ -63,7 +63,6 @@ class ArticleController extends Controller
             'category_id' => $request->category_id,
             'status' => $request->status
         ]);
-        // dd($upload);
         return redirect()->route('article.index');
     }
 
@@ -86,7 +85,11 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $category = Category::get(['category_id', 'nama']);
+        return view('admin.article.edit', [
+            'article' => $article,
+            'category' => $category
+        ]);
     }
 
     /**
@@ -98,7 +101,27 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $this->validate($request, [
+            'judul' => 'required',
+            'konten' => 'required',
+            'category_id' => 'required|numeric',
+            'sampul' => 'file|image'
+        ]);
+        $sampul = $article->sampul;
+        if($request->hasFile('sampul')){
+            Storage::delete($article->sampul);
+            $sampul = $request->file('sampul')->store('images');
+        }
+        $article->update([
+            'judul' => $request->judul,
+            'slug' => Str::slug($request->judul, '-'),
+            'konten' => $request->konten,
+            'sampul' => $sampul,
+            'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
+            'status' => $request->status
+        ]);
+        return redirect()->route('article.index');
     }
 
     /**
