@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'AdminController@index')->name('dashboard');
+Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
 Route::resource('admin/category', 'CategoryController'); 
 Route::resource('admin/article', 'ArticleController'); 
 

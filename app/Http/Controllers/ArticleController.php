@@ -27,7 +27,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::orderBy('nama', 'ASC')->get();
+        return view('admin.article.create', ['category' => $category]);
     }
 
     /**

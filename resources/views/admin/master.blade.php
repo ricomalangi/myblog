@@ -1,75 +1,58 @@
 <!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html lang="en">
-
 @include('admin.partials.head')
-<body id="page-top">
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+  <!-- Navbar -->
+  @include('admin.partials.nav')
+  <!-- /.navbar -->
 
-    <!-- Sidebar -->
-    @include('admin.partials.sidebar')
-    <!-- End of Sidebar -->
+  <!-- Main Sidebar Container -->
+  @include('admin.partials.sidebar')
 
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
-      <div id="content">
-
-        <!-- Topbar -->
-        @include('admin.partials.nav')
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-            @yield('content')
-        </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      @include('admin.partials.footer')
-      <!-- End of Footer -->
-
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Starter Page</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- /.content-header -->
 
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="{{route('logout')}}" onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();">Logout</a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-        </div>
-      </div>
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        @yield('content')
+      </div><!-- /.container-fluid -->
     </div>
+    <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
 
-  @include('admin.partials.scripts')
+  
 
+  <!-- Main Footer -->
+  @include('admin.partials.footer')
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+@include('admin.partials.scripts')
 </body>
-
 </html>

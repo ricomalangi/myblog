@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-<a href="{{route('category.create')}}" class="btn btn-md btn-primary mb-3">Create Article</a>
+<a href="{{route('article.create')}}" class="btn btn-md btn-primary mb-3">Create Article</a>
 <div class="table-responsive">
     <table class="table">
         <thead>

@@ -10,7 +10,7 @@ class Category extends Model
     protected $primaryKey = 'category_id';
     protected $guarded = [];
 
-    public function hasCategoryArticles()
+    public function categoryHasArticles()
     {
         return $this->hasMany('App\Article');
     }
