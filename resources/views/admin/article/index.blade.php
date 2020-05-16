@@ -31,6 +31,7 @@
                    @endif
                     alt="" width="150" height="150"></td>
                 <td>
+                    <a class="btn btn-info btn-md" href="{{route('article.show', $a->id)}}"><span class="far fa-eye"></span></a>
                     <a class="btn btn-warning btn-md" href="{{route('article.edit', $a->id)}}"><span class="far fa-edit"></span></a>
                     <a class="btn btn-danger btn-md" id="delete" href="{{route('article.destroy', $a->id)}}"><span class="far fa-trash-alt"></a>
                 </td>

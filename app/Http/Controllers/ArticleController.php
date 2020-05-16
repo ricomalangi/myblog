@@ -81,7 +81,10 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('admin.article.show', [
+            'article' => $article,
+            'title' => 'Article detail'
+        ]);
     }
 
     /**

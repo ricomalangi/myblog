@@ -27,5 +27,7 @@ Route::match(["GET", "POST"], "/register", function(){
     return redirect("/login");
 })->name("register");
 
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 //Route::get('/home', 'HomeController@index')->name('home');
