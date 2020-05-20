@@ -72,7 +72,7 @@
     </div>
     <div class="row mt-3 pb-3">
         <div class="col-md">
-            <a href="{{route('category.index')}}" class="btn btn-secondary btn-icon-split">
+            <a href="{{route('article.index')}}" class="btn btn-secondary btn-icon-split">
                 <span class="icon">
                 <i class="fas fa-arrow-left"></i>
                 </span>
@@ -102,6 +102,26 @@
 </script>
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'konten' );
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+    };
+</script>
+<script>
+    CKEDITOR.replace('konten', options);
 </script>
 @endpush
+
+{{-- <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+    .create( document.querySelector( '#konten' ) )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+</script> --}}

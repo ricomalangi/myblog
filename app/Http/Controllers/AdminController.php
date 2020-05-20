@@ -11,7 +11,10 @@ class AdminController extends Controller
     }
     public function index()
     {
-        $artilce = Article::count('id');$category = Category::count('nama');$publish = Article::where('status', 'publish')->count();$draft = Article::where('status', 'draft')->count();
+        $artilce = Article::count('id');
+        $category = Category::count('nama');
+        $publish = Article::where('status', 'publish')->count();
+        $draft = Article::where('status', 'draft')->count();
         return view('admin.dashboard', [
             'title' => 'Dashboard',
             'article' => $artilce,

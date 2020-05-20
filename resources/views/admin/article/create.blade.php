@@ -51,7 +51,7 @@
     <div class="row">
         <div class="col-md">
             <label for="content">Content</label>
-            <textarea name="konten" id="content" class="form-control @error('konten') is-invalid @enderror"></textarea>
+            <textarea name="konten" id="content" class="form-control @error('konten') is-invalid @enderror">{{old('konten')}}</textarea>
             @error('konten')
             <div class="invalid-feedback">{{$message}}</div>
             @enderror              
@@ -82,17 +82,17 @@
     });
 </script>
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-{{-- <script>
-    let token = document.getElementsByName('_token')[0].value
-    console.log(token)
+<script>
+    // let token = document.getElementsByName('_token')[0].value
+    // console.log(token)
     var options = {
       filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token='+token,
+      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
       filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='+token
+      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
     };
-</script> --}}
+</script>
 <script>
-    CKEDITOR.replace('content');
+    CKEDITOR.replace('content', options);
 </script>
 @endpush

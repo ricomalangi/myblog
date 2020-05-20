@@ -9,6 +9,7 @@
             <th scope="col">Title</th>
             <th scope="col">Author</th>
             <th>Category</th>
+            <th>Status</th>
             <th>Cover</th>
             <th>Action</th>
           </tr>
@@ -23,17 +24,18 @@
                 <td>{{$a->judul}}</td>
                 <td>{{$a->get_user->name}}</td>
                 <td>{{$a->get_category->nama}}</td>
+                <td><span class="badge badge-pill {{($a->status == 'publish' ? 'badge-success' : 'badge-danger')}}">{{$a->status}}</span></td>
                 <td><img
                    @if (substr($a->sampul,0,5) == "https")
                     src="{{$a->sampul}}"
                    @else
                     src="{{asset('storage/'. $a->sampul)}}"   
                    @endif
-                    alt="" width="150" height="150"></td>
+                    alt="null.jpg" width="100" height="100"></td>
                 <td>
-                    <a class="btn btn-info btn-md" href="{{route('article.show', $a->id)}}"><span class="far fa-eye"></span></a>
-                    <a class="btn btn-warning btn-md" href="{{route('article.edit', $a->id)}}"><span class="far fa-edit"></span></a>
-                    <a class="btn btn-danger btn-md" id="delete" href="{{route('article.destroy', $a->id)}}"><span class="far fa-trash-alt"></a>
+                    <a class="btn btn-info btn-md btn-sm" href="{{route('article.show', $a->id)}}"><span class="far fa-eye"></span></a>
+                    <a class="btn btn-warning btn-md btn-sm " href="{{route('article.edit', $a->id)}}"><span class="far fa-edit"></span></a>
+                    <a class="btn btn-danger btn-md btn-sm" id="delete" href="{{route('article.destroy', $a->id)}}"><span class="far fa-trash-alt"></a>
                 </td>
             </tr>
             @endforeach

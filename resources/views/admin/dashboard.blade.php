@@ -62,4 +62,26 @@
   </div>
   <!-- ./col -->
 </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card card-secondary">
+      <div class="card-header">
+        Account Information 
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th>Username</th>
+            <td>{{Auth::user()->name}}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{Auth::user()->email}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
