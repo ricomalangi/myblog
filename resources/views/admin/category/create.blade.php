@@ -6,7 +6,7 @@
             @csrf
             <div class="form-group">
                 <label for="category_name">Category Name</label>
-                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="category_name" value="{{old('nama')}}">
+                <input wire:model="category" type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="category_name" value="{{old('nama')}}">
                 @error('nama')
                 <div class="invalid-feedback">{{$message}}</div>
                 @enderror

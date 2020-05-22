@@ -70,7 +70,7 @@ class ArticleController extends Controller
             'category_id' => $request->category_id,
             'status' => $request->status
         ]);
-        return redirect()->route('article.index');
+        return redirect()->route('article.index')->with('success', 'artike berhasil dibuat');
     }
 
     /**
@@ -132,7 +132,7 @@ class ArticleController extends Controller
             'category_id' => $request->category_id,
             'status' => $request->status
         ]);
-        return redirect()->route('article.index');
+        return redirect()->route('article.index')->with('info', 'artikel berhasil diedit');
     }
 
     /**

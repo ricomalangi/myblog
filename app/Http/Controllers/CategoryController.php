@@ -53,7 +53,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->nama, '-')
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('success', 'kategori '.$request->nama.' berhasil dibuat');
     }
 
     /**
@@ -97,7 +97,7 @@ class CategoryController extends Controller
             'nama' => $request->nama,
             'slug' => Str::slug($request->nama, '-')
         ]);
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('info', 'kategori '.$request->nama.' berhasil dirubah');
     }
 
     /**
@@ -109,6 +109,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->back();
+        return redirect()->back()->with('delete', 'kategori '.$category->nama.' berhasil dihapus');
     }
 }

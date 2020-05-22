@@ -1,0 +1,11 @@
+<script>
+    @if(session('success'))
+    toastr.success('{{session("success")}}')
+    @endif
+    @if(session('info'))
+    toastr.info('{{session("info")}}')
+    @endif
+    @if(session('delete'))
+    toastr.error('{{session("delete")}}')
+    @endif    
+</script>

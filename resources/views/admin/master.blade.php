@@ -5,7 +5,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html lang="en">
 @include('admin.partials.head')
-<body class="hold-transition sidebar-mini">
+<body class="sidebar-mini layout-fixed sidebar-open sidebar-collapse">
 <div class="wrapper">
 
   <!-- Navbar -->
